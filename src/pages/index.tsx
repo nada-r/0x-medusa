@@ -47,9 +47,10 @@ export default function Home() {
                 <div className="mt-8 flex flex-col items-center justify-center">
                     <h1 className="text-3xl mb-4">0xmedusa</h1>
                     <img src="https://m.media-amazon.com/images/I/B1i3u9-Q-KS._CLa%7C2140%2C2000%7CB1nL5ios7SL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_UY1000_.png" alt="0xmedusa" className="w-64 h-64 object-cover mb-4" />
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md" type="button">Add to Cart</button>
+                    <button onClick={() => window.location.href='https://main--0xmedusa3.netlify.app/us/store'} className="transition-fg relative inline-flex items-center justify-center overflow-hidden rounded-md outline-none disabled:bg-ui-bg-disabled disabled:border-ui-border-base disabled:text-ui-fg-disabled disabled:shadow-buttons-neutral disabled:after:hidden after:transition-fg after:absolute after:inset-0 after:content-[''] shadow-buttons-inverted text-ui-fg-on-inverted bg-ui-button-inverted after:button-inverted-gradient hover:bg-ui-button-inverted-hover hover:after:button-inverted-hover-gradient active:bg-ui-button-inverted-pressed active:after:button-inverted-pressed-gradient focus:!shadow-buttons-inverted-focus txt-compact-small-plus gap-x-1.5 px-3 py-1.5 w-full h-10" type="button">Add to Cart</button>
                 </div>
             )}
         </div>
     );
 }
+
