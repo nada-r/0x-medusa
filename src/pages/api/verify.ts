@@ -17,7 +17,17 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<VerifyReply>
 ) {
-  //   return new Promise((resolve, reject) => {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Adjust this to match your front-end URL for better security
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  // Handle OPTIONS method (preflight request)
+  if (req.method === 'OPTIONS') {
+    // Stop here if it's a preflight request
+    return res.status(200).end();
+  }
+
   console.log("Received request to verify credential:\n", req.body);
   const reqBody = {
     nullifier_hash: req.body.nullifier_hash,
@@ -28,6 +38,7 @@ export default function handler(
     signal: req.body.signal,
   };
   console.log("Sending request to World ID /verify endpoint:\n", reqBody);
+
   fetch(verifyEndpoint, {
     method: "POST",
     headers: {
@@ -40,26 +51,15 @@ export default function handler(
         `Received ${verifyRes.status} response from World ID /verify endpoint:\n`,
         wldResponse
       );
-      if (verifyRes.status == 200) {
-        // This is where you should perform backend actions based on the verified credential, such as setting a user as "verified" in a database
-        // For this example, we'll just return a 200 response and console.log the verified credential
-        console.log(
-          "Credential verified! This user's nullifier hash is: ",
-          wldResponse.nullifier_hash
-        );
+      if (verifyRes.status === 200) {
+        console.log("Credential verified! This user's nullifier hash is: ", wldResponse.nullifier_hash);
         res.status(verifyRes.status).send({
           code: "success",
           detail: "This action verified correctly!",
         });
-        //   resolve(void 0);
       } else {
-        // This is where you should handle errors from the World ID /verify endpoint. Usually these errors are due to an invalid credential or a credential that has already been used.
-        // For this example, we'll just return the error code and detail from the World ID /verify endpoint.
-        res
-          .status(verifyRes.status)
-          .send({ code: wldResponse.code, detail: wldResponse.detail });
+        res.status(verifyRes.status).send({ code: wldResponse.code, detail: wldResponse.detail });
       }
     });
   });
-  //   });
 }
