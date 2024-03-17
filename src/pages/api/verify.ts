@@ -17,7 +17,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<VerifyReply>
 ) {
-  // Set CORS headers
+  const allowedOrigins = ['http://localhost:8000'];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000'); // Adjust according to your frontend app URL, use '*' for wide open
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
