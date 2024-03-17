@@ -23,23 +23,27 @@ export default function Home() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center align-middle h-screen">
-            <p className="text-2xl mb-5">Exclusive offer? Check your humanity</p>
-            <IDKitWidget
-                action={process.env.NEXT_PUBLIC_WLD_ACTION!}
-                app_id={process.env.NEXT_PUBLIC_WLD_APP_ID as `app_${string}`}
-                onSuccess={onSuccess}
-                handleVerify={handleProof}
-                verification_level={VerificationLevel.Orb}
-            >
-                {({ open }) =>
-                    <button className="border border-black rounded-md" onClick={open}>
-                        <div className="mx-3 my-1">Verify with World ID</div>
-                    </button>
-                }
-            </IDKitWidget>
+        <div className="flex flex-col items-center justify-center align-middle min-h-screen">
+            {!isVerified && ( // This block will only render if isVerified is false
+                <>
+                    <p className="text-2xl mb-5">Exclusive offer? Check your humanity</p>
+                    <IDKitWidget
+                        action={process.env.NEXT_PUBLIC_WLD_ACTION!}
+                        app_id={process.env.NEXT_PUBLIC_WLD_APP_ID as `app_${string}`}
+                        onSuccess={onSuccess}
+                        handleVerify={handleProof}
+                        verification_level={VerificationLevel.Orb}
+                    >
+                        {({ open }) =>
+                            <button className="border border-black rounded-md" onClick={open}>
+                                <div className="mx-3 my-1">Verify with World ID</div>
+                            </button>
+                        }
+                    </IDKitWidget>
+                </>
+            )}
 
-            {isVerified && (
+            {isVerified && ( // This block will render after successful verification
                 <div className="mt-8">
                     <p className="text-xl mb-4">Checkout Form</p>
                     <form className="flex flex-col">
