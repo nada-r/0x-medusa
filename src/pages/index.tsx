@@ -44,16 +44,10 @@ export default function Home() {
             )}
 
             {isVerified && ( // This block will render after successful verification
-                <div className="mt-8">
-                    <p className="text-xl mb-4">Checkout Form</p>
-                    <form className="flex flex-col">
-                        <input className="border rounded-md p-2 mb-4" type="text" placeholder="Full Name" required />
-                        <input className="border rounded-md p-2 mb-4" type="email" placeholder="Email" required />
-                        <input className="border rounded-md p-2 mb-4" type="text" placeholder="Address" required />
-                        <input className="border rounded-md p-2 mb-4" type="text" placeholder="City" required />
-                        <input className="border rounded-md p-2 mb-4" type="text" placeholder="Zip Code" required />
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md" type="submit">Place Order</button>
-                    </form>
+                <div className="mt-8 flex flex-col items-center justify-center">
+                    <h1 className="text-3xl mb-4">0xmedusa</h1>
+                    <img src="https://m.media-amazon.com/images/I/B1i3u9-Q-KS._CLa%7C2140%2C2000%7CB1nL5ios7SL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_UY1000_.png" alt="0xmedusa" className="w-64 h-64 object-cover mb-4" />
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md" type="button">Add to Cart</button>
                 </div>
             )}
         </div>
