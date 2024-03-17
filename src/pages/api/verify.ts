@@ -11,13 +11,12 @@ export type VerifyReply = {
   detail: string;
 };
 
-const verifyEndpoint = `${process.env.NEXT_PUBLIC_WLD_API_BASE_URL}/api/v1/verify/${process.env.NEXT_PUBLIC_WLD_APP_ID}`;
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<VerifyReply>
 ) {
-  /*const allowedOrigins = ['http://localhost:8000'];
+  const allowedOrigins = ['http://localhost:8000'];
   const origin = req.headers.origin;
   if (typeof origin === 'string' && allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
@@ -29,7 +28,7 @@ export default async function handler(
   // Handle OPTIONS method for preflight request
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
-  }*/
+  }
 
   // The rest of your API logic
   console.log("Received request to verify credential:\n", req.body);
@@ -69,3 +68,5 @@ export default async function handler(
     return res.status(500).send({ code: "error", detail: "Internal Server Error" });
   }
 }
+
+const verifyEndpoint = `${process.env.NEXT_PUBLIC_WLD_API_BASE_URL}/api/v1/verify/${process.env.NEXT_PUBLIC_WLD_APP_ID}`;
