@@ -19,7 +19,7 @@ export default async function handler(
 ) {
   const allowedOrigins = ['http://localhost:8000'];
   const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
+  if (typeof origin === 'string' && allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
