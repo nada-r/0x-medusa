@@ -23,7 +23,6 @@ export default async function handler(
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8000'); // Adjust according to your frontend app URL, use '*' for wide open
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
